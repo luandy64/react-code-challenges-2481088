@@ -4,7 +4,9 @@ import ColorRenderer from './01-color-renderer/ColorRenderer'
 function App () {
   return (
     <div className='App'>
-      <ColorRenderer />
+        <main>
+           <ColorRenderer />
+        </main>
     </div>
   )
 }
