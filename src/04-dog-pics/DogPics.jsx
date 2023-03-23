@@ -1,22 +1,23 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 
-const getDogPic = async () => {
-  const response = await fetch('https://dog.ceo/api/breeds/image/random')
-  const dog = await response.json()
-  return dog.message
+const get_image = async () => {
+  const image = await fetch("https://dog.ceo/api/breeds/image/random")
+  const json_obj = await image.json();
+  return json_obj.message;
 }
 
 export default function DogPics () {
-  const [dogPic, setDogPic] = useState('')
+  const [image, setImage] = useState('https://images.dog.ceo/breeds/spaniel-cocker/n02102318_4172.jpg');
 
-  useEffect(() => {
-    getDogPic().then(dogPic => setDogPic(dogPic))
-  }, [])
-
+  const refresh_image = async (e) => {
+    e.preventDefault();
+    setImage(await get_image());
+  };
+  
   return (
     <div className='dog-pics'>
-      <img src={dogPic} />
-      <button onClick={async e => setDogPic(await getDogPic())}>🐶</button>
+      <img src={image} />
+      <button onClick={refresh_image}>🐶</button>
     </div>
   )
 }

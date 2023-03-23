@@ -1,22 +1,27 @@
-import { useState } from 'react'
+const makeDark = (event) => {
+    const pageElement = document.getElementsByClassName("page")[0];
+    pageElement.classList.add("dark-mode")
+}
+
+const makeLight = (event) => {
+    const pageElement = document.getElementsByClassName("page")[0];
+    pageElement.classList.remove("dark-mode")
+}
 
 export default function DarkMode () {
-  const [darkMode, setDarkMode] = useState(false)
-
   return (
-    <div className={`page ${darkMode && 'dark-mode'}`}>
-      <button
-        className='dark-mode-button'
-        onClick={() => setDarkMode(true)}
-      >
-        Dark Mode
-      </button>
-      <button
-        className='light-mode-button'
-        onClick={() => setDarkMode(false)}
-      >
-        Light Mode
-      </button>
+    <div className='page'>
+        <button 
+            className='dark-mode-button'
+            onClick={makeDark}>
+            Dark Mode
+        </button>
+      
+        <button 
+            className='light-mode-button'
+            onClick={makeLight}>
+            Light Mode
+        </button>
     </div>
   )
 }
